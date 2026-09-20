@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 import pandas as pd
 import joblib
@@ -8,6 +7,21 @@ app = Flask(__name__)
 # Load trained model
 model = joblib.load("house_price_model.pkl")
 feature_names = joblib.load("model_features.pkl")
+
+
+# Get all available locations from model features
+location_columns = [
+    col for col in feature_names
+    if col.startswith("Location_")
+]
+
+locations = sorted(
+    list(set(
+        col.replace("Location_", "").strip()
+        for col in location_columns
+    )),
+    key=str.lower
+)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -31,16 +45,12 @@ def home():
                 columns=feature_names
             )
 
+            # Basic features
             new_house["Area"] = area
             new_house["No. of Bedrooms"] = bedrooms
             new_house["Resale"] = resale
 
             # Location matching
-            location_columns = [
-                col for col in feature_names
-                if col.startswith("Location_")
-            ]
-
             location_map = {
                 col.replace("Location_", "").strip().lower(): col
                 for col in location_columns
@@ -49,9 +59,13 @@ def home():
             location_key = location.lower()
 
             if location_key not in location_map:
+
                 error = "Location not found in dataset."
+
             else:
+
                 actual_location = location_map[location_key]
+
                 new_house[actual_location] = 1
 
                 predicted_price = model.predict(new_house)[0]
@@ -59,13 +73,15 @@ def home():
                 prediction = predicted_price / 100000
 
         except Exception as e:
+
             error = "Please enter valid details."
 
 
     return render_template(
         "index.html",
         prediction=prediction,
-        error=error
+        error=error,
+        locations=locations
     )
 
 
