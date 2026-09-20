@@ -1,19 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>HousePrice AI | House Price Prediction</title>
+    <title>House Price Prediction</title>
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
 
     <style>
 
@@ -23,502 +27,631 @@
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background:
-                radial-gradient(circle at top left, #263238 0%, transparent 35%),
-                radial-gradient(circle at bottom right, #17202a 0%, transparent 35%),
-                #080808;
-            color: white;
             min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(circle at top left, #202040 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #172554 0%, transparent 35%),
+                #050509;
+
+            color: #ffffff;
         }
 
-        /* Navbar */
+        /* Main Container */
 
-        .navbar {
-            background: rgba(10,10,10,0.75);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        .main-container {
+            min-height: 100vh;
+            padding: 35px 15px;
         }
 
-        .brand {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+        /* Heading */
 
-        .brand span {
-            color: #00e5ff;
-        }
-
-        /* Hero */
-
-        .hero {
-            padding: 80px 20px 40px;
+        .project-title {
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 30px;
-            background: rgba(0,229,255,0.08);
-            border: 1px solid rgba(0,229,255,0.25);
-            color: #00e5ff;
-            font-size: 14px;
-            margin-bottom: 20px;
+        .project-title .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
         }
 
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 70px);
+        .project-title h1 {
+            font-size: 42px;
             font-weight: 800;
-            line-height: 1.05;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .hero h1 span {
-            background: linear-gradient(90deg, #00e5ff, #7c4dff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .project-title p {
+            font-size: 19px;
+            color: #c7c7d1;
+            margin: 0;
         }
 
-        .hero p {
-            color: #aaa;
-            max-width: 650px;
-            margin: 20px auto;
-            font-size: 17px;
-        }
-
-        /* Prediction Card */
+        /* Main Card */
 
         .prediction-card {
             max-width: 850px;
-            margin: 20px auto 70px;
-            padding: 35px;
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
             border-radius: 25px;
 
-            background: rgba(255,255,255,0.055);
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 35px;
 
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
 
             box-shadow:
-                0 25px 80px rgba(0,0,0,0.45),
-                inset 0 1px rgba(255,255,255,0.08);
+                0 20px 60px rgba(0, 0, 0, 0.45);
         }
 
-        .card-title {
+        /* Section Title */
+
+        .section-title {
             font-size: 25px;
             font-weight: 700;
             margin-bottom: 25px;
         }
 
-        /* Inputs */
+        /* Labels */
 
         .form-label {
-            color: #ccc;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .input-group-text {
-            background: #202020;
-            border: 1px solid #333;
-            color: #00e5ff;
-        }
+        /* Inputs */
 
         .form-control,
         .form-select {
-            background: #151515;
-            border: 1px solid #333;
-            color: white;
-            padding: 13px;
-            border-radius: 10px;
+
+            min-height: 58px;
+
+            background: rgba(255, 255, 255, 0.09);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            color: #ffffff;
+
+            border-radius: 14px;
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+            padding: 12px 16px;
+        }
+
+        .form-control::placeholder {
+            color: #a9a9b5;
         }
 
         .form-control:focus,
         .form-select:focus {
-            background: #151515;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            color: #ffffff;
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 0 0 4px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Dropdown */
+
+        .form-select option {
+            background: #11111b;
             color: white;
-            border-color: #00e5ff;
-            box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
         }
 
-        .form-control::placeholder {
-            color: #666;
+        /* Searchable Location */
+
+        .location-wrapper {
+            position: relative;
         }
 
-        /* Button */
+        .location-hint {
+            font-size: 14px;
+            color: #a9a9b5;
+            margin-top: 7px;
+        }
+
+        /* Prediction Button */
 
         .predict-btn {
+
             width: 100%;
+
+            min-height: 62px;
+
+            margin-top: 15px;
+
             border: none;
-            padding: 15px;
-            border-radius: 12px;
 
-            font-size: 17px;
-            font-weight: 700;
+            border-radius: 15px;
 
-            color: white;
+            font-size: 21px;
 
-            background: linear-gradient(
-                90deg,
-                #00b8d4,
-                #7c4dff
-            );
+            font-weight: 800;
 
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0,229,255,0.15);
-        }
-
-        .predict-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(124,77,255,0.35);
-        }
-
-        /* Result */
-
-        .result-box {
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 18px;
+            color: #ffffff;
 
             background:
                 linear-gradient(
                     135deg,
-                    rgba(0,229,255,0.12),
-                    rgba(124,77,255,0.12)
+                    #7c3aed,
+                    #2563eb
                 );
 
-            border: 1px solid rgba(0,229,255,0.25);
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.3);
+
+            transition: 0.25s;
+        }
+
+        .predict-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(37, 99, 235, 0.45);
+        }
+
+        /* Prediction Result */
+
+        .result-box {
+
+            margin-top: 30px;
+
+            padding: 28px;
+
             text-align: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(16, 185, 129, 0.18),
+                    rgba(59, 130, 246, 0.15)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .result-title {
-            color: #aaa;
-            font-size: 14px;
+
+            font-size: 19px;
+
+            color: #c7c7d1;
+
+            margin-bottom: 10px;
+
+            font-weight: 600;
         }
 
         .result-price {
-            margin-top: 5px;
-            font-size: 40px;
-            font-weight: 800;
 
-            background: linear-gradient(
-                90deg,
-                #00e5ff,
-                #7c4dff
-            );
+            font-size: 46px;
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            color: #ffffff;
         }
 
-        /* Features */
+        .result-note {
 
-        .feature-section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-        }
+            margin-top: 8px;
 
-        .feature-card {
-            height: 100%;
-            padding: 25px;
-
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-
-            border-radius: 18px;
-
-            transition: 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0,229,255,0.3);
-        }
-
-        .feature-icon {
-            font-size: 30px;
-            color: #00e5ff;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h5 {
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            color: #999;
             font-size: 14px;
+
+            color: #a9a9b5;
         }
 
         /* Error */
 
         .error-box {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255,50,50,0.1);
-            border: 1px solid rgba(255,50,50,0.3);
-            color: #ff7777;
+
+            margin-top: 25px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: rgba(239, 68, 68, 0.15);
+
+            border: 1px solid rgba(239, 68, 68, 0.35);
+
+            color: #ffb4b4;
+
+            font-size: 17px;
+
             text-align: center;
+        }
+
+        /* Feature Cards */
+
+        .feature-section {
+
+            max-width: 850px;
+
+            margin: 35px auto 0;
+        }
+
+        .feature-card {
+
+            height: 100%;
+
+            padding: 22px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card i {
+
+            font-size: 32px;
+
+            display: block;
+
+            margin-bottom: 12px;
+        }
+
+        .feature-card h5 {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+
+            font-size: 14px;
+
+            color: #a9a9b5;
+
+            margin: 0;
         }
 
         /* Footer */
 
-        footer {
-            margin-top: 80px;
-            padding: 30px;
+        .footer {
+
             text-align: center;
-            color: #666;
-            border-top: 1px solid rgba(255,255,255,0.07);
+
+            margin-top: 45px;
+
+            padding: 25px 15px 35px;
         }
 
-        footer span {
-            color: #00e5ff;
+        .created-by {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            color: #c7c7d1;
+
+            margin-bottom: 7px;
+        }
+
+        .creator-name {
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            color: #ffffff;
+        }
+
+        .footer-line {
+
+            width: 100px;
+
+            height: 3px;
+
+            margin: 15px auto;
+
+            border-radius: 10px;
+
+            background: #8b5cf6;
+        }
+
+        .footer-project {
+
+            font-size: 14px;
+
+            color: #888894;
+        }
+
+        /* Projector Responsive */
+
+        @media (min-width: 1200px) {
+
+            .project-title h1 {
+                font-size: 48px;
+            }
+
+            .prediction-card {
+                max-width: 900px;
+            }
+
+            .form-label {
+                font-size: 20px;
+            }
+
+            .form-control,
+            .form-select {
+                font-size: 20px;
+                min-height: 62px;
+            }
+
+            .result-price {
+                font-size: 55px;
+            }
+
+            .creator-name {
+                font-size: 34px;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 576px) {
+
+            .main-container {
+                padding: 25px 12px;
+            }
+
+            .project-title h1 {
+                font-size: 30px;
+            }
+
+            .project-title p {
+                font-size: 16px;
+            }
+
+            .prediction-card {
+                padding: 22px;
+                border-radius: 20px;
+            }
+
+            .section-title {
+                font-size: 21px;
+            }
+
+            .result-price {
+                font-size: 36px;
+            }
+
+            .creator-name {
+                font-size: 24px;
+            }
+
+            .created-by {
+                font-size: 14px;
+                letter-spacing: 3px;
+            }
         }
 
     </style>
 
 </head>
 
-
 <body>
 
+<div class="main-container">
 
-<!-- Navbar -->
+    <!-- Project Heading -->
 
-<nav class="navbar navbar-expand-lg">
+    <div class="project-title">
 
-    <div class="container">
+        <div class="icon">
+            🏠
+        </div>
 
-        <a class="navbar-brand text-white brand">
-            <i class="bi bi-house-heart-fill"></i>
-            HousePrice<span>AI</span>
-        </a>
+        <h1>
+            House Price Prediction
+        </h1>
 
-        <span class="text-secondary small">
-            Machine Learning
-        </span>
+        <p>
+            Machine Learning Based House Price Estimation
+        </p>
 
     </div>
 
-</nav>
 
-
-
-<!-- Hero -->
-
-<section class="hero">
-
-    <div class="hero-badge">
-        <i class="bi bi-stars"></i>
-        AI Powered House Price Prediction
-    </div>
-
-    <h1>
-        Find Your Home's<br>
-        <span>Estimated Value</span>
-    </h1>
-
-    <p>
-        Enter your property details and our Machine Learning
-        model will estimate the house price instantly.
-    </p>
-
-</section>
-
-
-
-<!-- Prediction Card -->
-
-<div class="container">
+    <!-- Prediction Card -->
 
     <div class="prediction-card">
 
-        <div class="card-title">
-            <i class="bi bi-calculator"></i>
-            Property Details
+        <div class="section-title">
+            <i class="bi bi-house-door-fill"></i>
+            Enter House Details
         </div>
 
 
         <form method="POST">
 
-            <div class="row g-4">
+            <!-- Area -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    <i class="bi bi-rulers"></i>
+                    Area (sq.ft)
+                </label>
+
+                <input
+                    type="number"
+                    name="area"
+                    class="form-control"
+                    placeholder="Example: 1500"
+                    min="100"
+                    required
+                >
+
+            </div>
 
 
-                <!-- Area -->
+            <!-- Bedrooms -->
 
-                <div class="col-md-6">
+            <div class="mb-4">
 
-                    <label class="form-label">
-                        Area
-                    </label>
+                <label class="form-label">
+                    <i class="bi bi-door-open-fill"></i>
+                    Number of Bedrooms
+                </label>
 
-                    <div class="input-group">
+                <input
+                    type="number"
+                    name="bedrooms"
+                    class="form-control"
+                    placeholder="Example: 3"
+                    min="1"
+                    max="20"
+                    required
+                >
 
-                        <span class="input-group-text">
-                            <i class="bi bi-rulers"></i>
-                        </span>
-
-                        <input
-                            type="number"
-                            name="area"
-                            class="form-control"
-                            placeholder="e.g. 1500"
-                            required
-                        >
-
-                    </div>
-
-                    <small class="text-secondary">
-                        Square feet
-                    </small>
-
-                </div>
+            </div>
 
 
+            <!-- Location -->
 
-                <!-- Bedrooms -->
+            <div class="mb-4">
 
-                <div class="col-md-6">
+                <label class="form-label">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    Chennai Location
+                </label>
 
-                    <label class="form-label">
-                        Bedrooms
-                    </label>
+                <div class="location-wrapper">
 
-                    <div class="input-group">
-
-                        <span class="input-group-text">
-                            <i class="bi bi-door-open"></i>
-                        </span>
-
-                        <input
-                            type="number"
-                            name="bedrooms"
-                            class="form-control"
-                            placeholder="e.g. 3"
-                            min="1"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- Location -->
-
-                <div class="col-md-6">
-
-                    <label class="form-label">
-                        Location
-                    </label>
-
-                    <div class="input-group">
-
-                        <span class="input-group-text">
-                            <i class="bi bi-geo-alt-fill"></i>
-                        </span>
-
-                        <input
-                            type="text"
-                            name="location"
-                            class="form-control"
-                            placeholder="e.g. Anna Nagar"
-                            required
-                        >
-
-                    </div>
-
-                    <small class="text-secondary">
-                        Chennai location
-                    </small>
-
-                </div>
-
-
-
-                <!-- Resale -->
-
-                <div class="col-md-6">
-
-                    <label class="form-label">
-                        Property Type
-                    </label>
-
-                    <div class="input-group">
-
-                        <span class="input-group-text">
-                            <i class="bi bi-house"></i>
-                        </span>
-
-                        <select
-                            name="resale"
-                            class="form-select"
-                        >
-
-                            <option value="0">
-                                New Property
-                            </option>
-
-                            <option value="1">
-                                Resale Property
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- Button -->
-
-                <div class="col-12">
-
-                    <button
-                        type="submit"
-                        class="predict-btn"
+                    <select
+                        name="location"
+                        class="form-select"
+                        required
                     >
 
-                        <i class="bi bi-magic"></i>
-                        Predict House Price
+                        <option
+                            value=""
+                            selected
+                            disabled
+                        >
+                            🏙️ Select Chennai Area
+                        </option>
 
-                    </button>
+                        {% for location in locations %}
 
+                        <option value="{{ location }}">
+                            {{ location }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="location-hint">
+                    <i class="bi bi-info-circle"></i>
+                    Select from 185 locations available in the dataset
                 </div>
 
             </div>
+
+
+            <!-- Resale -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    <i class="bi bi-arrow-repeat"></i>
+                    Resale House?
+                </label>
+
+                <select
+                    name="resale"
+                    class="form-select"
+                    required
+                >
+
+                    <option value="" selected disabled>
+                        Select Option
+                    </option>
+
+                    <option value="0">
+                        No - New Property
+                    </option>
+
+                    <option value="1">
+                        Yes - Resale Property
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Predict Button -->
+
+            <button
+                type="submit"
+                class="predict-btn"
+            >
+
+                <i class="bi bi-cpu-fill"></i>
+
+                Predict House Price
+
+            </button>
 
         </form>
 
 
-
         <!-- Prediction Result -->
 
-        {% if prediction %}
+        {% if prediction is not none %}
 
         <div class="result-box">
 
             <div class="result-title">
-                ESTIMATED PROPERTY VALUE
+                <i class="bi bi-graph-up-arrow"></i>
+                Estimated House Price
             </div>
 
             <div class="result-price">
-                ₹ {{ "%.2f"|format(prediction) }} Lakhs
+                ₹{{ "%.2f"|format(prediction) }} Lakhs
             </div>
 
-            <small class="text-secondary">
-                Based on the trained Machine Learning model
-            </small>
+            <div class="result-note">
+                Estimated using Machine Learning
+            </div>
 
         </div>
 
         {% endif %}
-
 
 
         <!-- Error -->
@@ -527,111 +660,112 @@
 
         <div class="error-box">
 
-            <i class="bi bi-exclamation-triangle"></i>
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
             {{ error }}
 
         </div>
 
         {% endif %}
 
+    </div>
+
+
+    <!-- Feature Section -->
+
+    <div class="feature-section">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-database-fill"></i>
+
+                    <h5>
+                        5,014 Records
+                    </h5>
+
+                    <p>
+                        Chennai house price dataset
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-geo-alt-fill"></i>
+
+                    <h5>
+                        185 Locations
+                    </h5>
+
+                    <p>
+                        Dataset-supported Chennai areas
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-robot"></i>
+
+                    <h5>
+                        Machine Learning
+                    </h5>
+
+                    <p>
+                        Random Forest prediction model
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="created-by">
+            CREATED BY
+        </div>
+
+        <div class="creator-name">
+            MOHAMMED THASLEEM
+        </div>
+
+        <div class="footer-line"></div>
+
+        <div class="footer-project">
+            House Price Prediction Using Machine Learning
+        </div>
+
+    </footer>
 
 </div>
 
 
+<!-- Bootstrap JS -->
 
-<!-- Features -->
-
-<section class="feature-section">
-
-    <div class="row g-4">
-
-
-        <div class="col-md-4">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="bi bi-cpu"></i>
-                </div>
-
-                <h5>Machine Learning</h5>
-
-                <p>
-                    Powered by a trained Random Forest
-                    regression model.
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-4">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="bi bi-graph-up-arrow"></i>
-                </div>
-
-                <h5>Instant Prediction</h5>
-
-                <p>
-                    Enter property details and receive
-                    an estimated price instantly.
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-4">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="bi bi-shield-check"></i>
-                </div>
-
-                <h5>Simple & Easy</h5>
-
-                <p>
-                    Clean interface designed for quick
-                    and easy property prediction.
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- Footer -->
-
-<footer>
-
-    <div>
-        HousePrice<span>AI</span>
-    </div>
-
-    <small>
-        House Price Prediction using Machine Learning
-    </small>
-
-</footer>
-
-
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 </body>
-
 </html>
